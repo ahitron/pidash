@@ -29,7 +29,7 @@ function PiDash() {
     return <p>Error</p>
   }
   return (
-    <div className="font-main w-[1280px] h-[720px] bg-dark text-light">
+    <div>
       <p>Open Sans: 72</p>
       <p className="font-special">Raleway: 72</p>
       <p>{import.meta.env.VITE_TEST}</p>
