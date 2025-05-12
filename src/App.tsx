@@ -3,7 +3,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query'
-import { data as stuff } from './dummy'
+import { getData } from './datatools'
+import Current from './Current'
 
 const queryClient = new QueryClient()
 
@@ -18,9 +19,7 @@ function App() {
 function PiDash() {
   const { isPending, isError, data } = useQuery({
     queryKey: ['weatherData'],
-    queryFn: () => {
-      return stuff
-    },
+    queryFn: getData,
   })
   if (isPending) {
     return <p>Pending</p>
@@ -28,13 +27,10 @@ function PiDash() {
   if (isError) {
     return <p>Error</p>
   }
+  const { current } = data
   return (
     <div>
-      <p>Open Sans: 72</p>
-      <p className="font-special">Raleway: 72</p>
-      <p>{import.meta.env.VITE_TEST}</p>
-      <p>{data.day}</p>
-      <p>{data.temp}</p>
+      <Current {...current} />
     </div>
   )
 }
