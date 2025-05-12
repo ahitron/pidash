@@ -29,8 +29,13 @@ function PiDash() {
   }
   const { current } = data
   return (
-    <div>
-      <Current {...current} />
+    <div className="flex flex-row">
+      <div className="w-[27.25%]">
+        <Current {...current} />
+      </div>
+      <div>
+        Hi
+      </div>
     </div>
   )
 }

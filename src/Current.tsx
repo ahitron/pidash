@@ -4,7 +4,7 @@ function Current({ dt, city, temp, condition, feels, humidity, wind, uv, aq }: C
     const hours = dt.getHours()
     const minutes = dt.getMinutes()
     return (
-        <div>
+        <div className="text-center">
             As of {`${dt.getMonth()}/${dt.getDate()}/${dt.getFullYear() % 100}`} at {hours % 12 == 0 ? 12 : hours % 12}:{minutes} {hours >= 12 ? 'PM' : 'AM'}
             <br />
             {city}
