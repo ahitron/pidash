@@ -1,27 +1,10 @@
+import Hour from "./Hour";
 import type { HourlyProps } from "./types";
 
 function Hourly({ hours }: HourlyProps) {
     return (
         <div>
-            {hours.map(
-                ({ time, condition, icon, temp, precip }, idx) => (
-                    <div key={idx}>
-                        <div>
-                            {time}
-                        </div>
-                        <div>
-                            <img src={icon} />
-                            {condition}
-                        </div>
-                        <div>
-                            {temp}
-                        </div>
-                        <div>
-                            {precip}
-                        </div>
-                    </div>
-                )
-            )}
+            {hours.map((hour, idx) => <Hour key={idx} {...hour} />)}
         </div>
     )
 }

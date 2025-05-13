@@ -98,6 +98,23 @@ export interface HourlyProps {
     hours: HourlyWeatherData[],
 }
 
+export interface HourProps {
+    time: string,
+    condition: string,
+    icon: string,
+    temp: string,
+    precip: string,
+}
+
 export interface DailyProps {
     days: DailyWeatherData[],
+}
+
+export interface DayProps {
+    name: string,
+    condition: string,
+    icon: string,
+    hi: string,
+    lo: string,
+    precip: string,
 }
