@@ -1,27 +1,33 @@
-import type { CurrentWeather } from "./types"
+import type { CurrentProps } from "./types";
 
-function Current({ dt, city, temp, condition, feels, humidity, wind, uv, aq }: CurrentWeather) {
-    const hours = dt.getHours()
-    const minutes = dt.getMinutes()
+function Current({ updated, current: { primary, stats } }: CurrentProps) {
+    const { city, temp, condition } = primary
     return (
-        <div className="text-center">
-            As of {`${dt.getMonth()}/${dt.getDate()}/${dt.getFullYear() % 100}`} at {hours % 12 == 0 ? 12 : hours % 12}:{minutes} {hours >= 12 ? 'PM' : 'AM'}
-            <br />
-            {city}
-            <br />
-            {temp}°
-            <br />
-            {condition}
-            <br />
-            Feels Like {feels}
-            <br />
-            Humidity {humidity}
-            <br />
-            Wind {wind}
-            <br />
-            UV {uv}
-            <br />
-            Air Quality {aq}
+        <div>
+            <div>
+                {updated}
+            </div>
+            <div>
+                {city}
+            </div>
+            <div>
+                {temp}
+            </div>
+            <div>
+                {condition}
+            </div>
+            {stats.map(
+                ({ title, value }, idx) => (
+                    <div key={idx}>
+                        <div>
+                            {title}
+                        </div>
+                        <div>
+                            {value}
+                        </div>
+                    </div>
+                )
+            )}
         </div>
     )
 }

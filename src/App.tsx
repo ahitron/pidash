@@ -19,7 +19,7 @@ function App() {
 function PiDash() {
   const { isPending, isError, data } = useQuery({
     queryKey: ['weatherData'],
-    queryFn: getData,
+    queryFn: () => getData(3),
   })
   if (isPending) {
     return <p>Pending</p>
@@ -27,15 +27,18 @@ function PiDash() {
   if (isError) {
     return <p>Error</p>
   }
-  const { current } = data
+  const { updated, current, daily, hourly } = data
   return (
-    <div className="flex flex-row">
-      <div className="w-[27.25%]">
-        <Current {...current} />
+    <div>
+      <div>
+        <Current updated={updated} current={current} />
+      </div>
+      {/* <div>
+        <Daily days={daily} />
       </div>
       <div>
-        Hi
-      </div>
+        <Hourly hours={hourly} />
+      </div> */}
     </div>
   )
 }
