@@ -79,3 +79,11 @@ export interface CurrentProps {
     updated: string,
     current: CurrentWeatherData,
 }
+
+export interface HourlyProps {
+    hours: HourlyWeatherData[],
+}
+
+export interface DailyProps {
+    days: DailyWeatherData[],
+}

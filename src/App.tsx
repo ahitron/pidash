@@ -5,6 +5,8 @@ import {
 } from '@tanstack/react-query'
 import { getData } from './datatools'
 import Current from './Current'
+import Hourly from './Hourly'
+import Daily from './Daily'
 
 const queryClient = new QueryClient()
 
@@ -22,7 +24,7 @@ function PiDash() {
     queryFn: () => getData(3),
   })
   if (isPending) {
-    return <p>Pending</p>
+    return <p>Loading data...</p>
   }
   if (isError) {
     return <p>Error</p>
@@ -33,12 +35,14 @@ function PiDash() {
       <div>
         <Current updated={updated} current={current} />
       </div>
-      {/* <div>
-        <Daily days={daily} />
-      </div>
       <div>
-        <Hourly hours={hourly} />
-      </div> */}
+        <div>
+          <Daily days={daily} />
+        </div>
+        <div>
+          <Hourly hours={hourly} />
+        </div>
+      </div>
     </div>
   )
 }
