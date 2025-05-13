@@ -2,6 +2,7 @@ export interface PrimaryWeatherData {
     city: string,
     temp: string,
     condition: string,
+    icon: string,
 }
 
 export interface CurrentWeatherStat {
@@ -17,6 +18,7 @@ export interface CurrentWeatherData {
 export interface DailyWeatherData {
     name: string,
     condition: string,
+    icon: string,
     hi: string,
     lo: string,
     precip: string,
@@ -25,6 +27,7 @@ export interface DailyWeatherData {
 export interface HourlyWeatherData {
     time: string,
     condition: string,
+    icon: string,
     temp: string,
     precip: string,
 }
@@ -36,12 +39,15 @@ export interface WeatherData {
     hourly: HourlyWeatherData[],
 }
 
+export interface APIWeather {
+    main: string,
+    icon: string,
+}
+
 export interface APIHour {
     dt: number,
     temp: number,
-    weather: { 
-        main: string,
-    }[],
+    weather: APIWeather[],
     pop: number,
 }
 
@@ -51,9 +57,7 @@ export interface APIDay {
         min: number,
         max: number,
     },
-    weather: {
-        main: string,
-    }[],
+    weather: APIWeather[],
     pop:number,
 }
 
@@ -64,9 +68,7 @@ export interface APICurrent {
     humidity: number,
     uvi: number,
     wind_speed: number,
-    weather: {
-        main: string,
-    }[],
+    weather: APIWeather[],
   }
 
 export interface APIData {

@@ -1,7 +1,7 @@
 import type { CurrentProps } from "./types";
 
 function Current({ updated, current: { primary, stats } }: CurrentProps) {
-    const { city, temp, condition } = primary
+    const { city, temp, condition, icon } = primary
     return (
         <div>
             <div>
@@ -14,6 +14,7 @@ function Current({ updated, current: { primary, stats } }: CurrentProps) {
                 {temp}
             </div>
             <div>
+                <img src={icon} />
                 {condition}
             </div>
             {stats.map(

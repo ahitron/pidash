@@ -4,12 +4,13 @@ function Daily({ days }: DailyProps) {
     return (
         <div>
             {days.map(
-                ({ name, condition, hi, lo, precip }, idx) => (
+                ({ name, condition, icon, hi, lo, precip }, idx) => (
                     <div key={idx}>
                         <div>
                             {name}
                         </div>
                         <div>
+                            <img src={icon} />
                             {condition}
                         </div>
                         <div>

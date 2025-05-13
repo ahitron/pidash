@@ -21,7 +21,7 @@ function App() {
 function PiDash() {
   const { isPending, isError, data } = useQuery({
     queryKey: ['weatherData'],
-    queryFn: () => getData(3),
+    queryFn: () => getData(4),
   })
   if (isPending) {
     return <p>Loading data...</p>

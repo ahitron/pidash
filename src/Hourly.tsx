@@ -4,12 +4,13 @@ function Hourly({ hours }: HourlyProps) {
     return (
         <div>
             {hours.map(
-                ({ time, condition, temp, precip }, idx) => (
+                ({ time, condition, icon, temp, precip }, idx) => (
                     <div key={idx}>
                         <div>
                             {time}
                         </div>
                         <div>
+                            <img src={icon} />
                             {condition}
                         </div>
                         <div>
