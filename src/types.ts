@@ -82,6 +82,18 @@ export interface CurrentProps {
     current: CurrentWeatherData,
 }
 
+export interface PrimaryProps {
+    city: string,
+    temp: string,
+    condition: string,
+    icon: string,
+}
+
+export interface StatProps {
+    title: string,
+    value: string,
+}
+
 export interface HourlyProps {
     hours: HourlyWeatherData[],
 }
