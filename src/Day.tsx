@@ -2,19 +2,16 @@ import type { DayProps } from "./types";
 
 function Day({ name, condition, icon, hi, lo, precip }: DayProps) {
     return (
-        <div>
-            <div>
-                {name}
+        <div className="text-xl">
+            <div className="text-2xl font-bold">
+                {name.toUpperCase()}
             </div>
             <div>
-                <img src={icon} />
+                <img src={icon} className="mx-auto" />
                 {condition}
             </div>
             <div>
-                {hi}
-            </div>
-            <div>
-                {lo}
+                {hi} / {lo}
             </div>
             <div>
                 {precip}

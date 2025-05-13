@@ -4,10 +4,10 @@ function Stat({ title, value }: StatProps) {
     return (
         <div>
             <div>
-                {title}
+                {title.toUpperCase()}
             </div>
-            <div>
-                {value}
+            <div className="text-3xl font-bold">
+                {value.toUpperCase()}
             </div>
         </div>
     )

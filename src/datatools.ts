@@ -61,21 +61,21 @@ const parseCurrent = (current: APICurrent): CurrentWeatherData => {
   return {
     primary: {
       city: 'Ramsey',
-      temp: kToFDeg(temp),
+      temp: kToFDeg(temp, false),
       condition,
       icon: iconToURL(icon),
     },
     stats: [
       { title: 'feels like', value: kToFDeg(feel) },
       { title: 'humidity', value: `${humidity}%` },
-      { title: 'wind', value: `${wind} mph` },
+      { title: 'wind', value: `${wind.toFixed(0)} mph` },
       { title: 'uv index', value: uv.toFixed(1) },
       { title: 'air quality', value: 'good' },
     ],
   }
 }
 
-const kToFDeg = (k: number): string => `${((k - 273.15) * 9 / 5 + 32).toFixed(0)}°`
+const kToFDeg = (k: number, deg=true): string => `${((k - 273.15) * 9 / 5 + 32).toFixed(0)}${deg ? '°' : ''}`
 
 const epochToDayOfWeek = (epoch: number): string => ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][new Date(epoch * 1000).getDay()]
 
@@ -88,7 +88,7 @@ const epochToUpdated = (epoch: number): string => {
   const date = new Date(epoch * 1000)
   const hours = date.getHours()
   const minutes = date.getMinutes()
-  return `Last updated: ${date.getMonth()}/${date.getDate()}/${date.getFullYear() % 100} at ${hours % 12 == 0 ? 12 : hours % 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
+  return `Last updated: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100} ${hours % 12 == 0 ? 12 : hours % 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
 }
 
 const decToPercent = (dec: number) => `${(100 * dec).toFixed(0)}%`
