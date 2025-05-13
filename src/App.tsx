@@ -35,11 +35,11 @@ function PiDash() {
       <div className="flex-1 h-full">
         <Current updated={updated} current={current} />
       </div>
-      <div className="flex-3 flex flex-col h-full">
-        <div className="flex-1">
+      <div className="flex-3 flex flex-col h-full justify-evenly">
+        <div className="">
           <Hourly hours={hourly} />
         </div>
-        <div className="flex-1">
+        <div className="">
           <Daily days={daily} />
         </div>
       </div>

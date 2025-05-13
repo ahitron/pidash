@@ -3,7 +3,7 @@ import type { HourlyProps } from "./types";
 
 function Hourly({ hours }: HourlyProps) {
     return (
-        <div className="flex flex-row justify-evenly items-center h-full">
+        <div className="flex flex-row justify-evenly items-center">
             {hours.map((hour, idx) => <Hour key={idx} {...hour} />)}
         </div>
     )

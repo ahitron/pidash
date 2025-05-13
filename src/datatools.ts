@@ -3,9 +3,21 @@ import { type APICurrent, type APIData, type APIDay, type APIHour, type CurrentW
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
+const dev = false
+
 export const getData = async (numItems: number): Promise<WeatherData> => {
-  await sleep(500)
-  const data = dummyData as APIData
+  if (dev) {
+    await sleep(500)
+    const data = dummyData as APIData
+    return parseData(data, numItems)
+  }
+  const apiKey = import.meta.env.VITE_OWM_KEY
+  const exclude = 'minutely'
+  const lat = '41.07151608769102'
+  const lon = '-74.14601227311135'
+  const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${apiKey}`
+  const res = await fetch(url)
+  const data = await res.json()
   return parseData(data, numItems)
 }
 
@@ -38,7 +50,7 @@ const parseDaily = (daily: APIDay[], numItems: number): DailyWeatherData[] => {
     const { dt, temp: { min, max }, weather, pop } = day
     const { main: condition, icon } = weather[0]
     return {
-      name: idx == 0 ? 'today' : idx == 1 ? 'tomorrow' : epochToDayOfWeek(dt),
+      name: idx == 0 ? 'today' : epochToDayOfWeek(dt),
       condition,
       icon: iconToURL(icon),
       hi: kToFDeg(max),
