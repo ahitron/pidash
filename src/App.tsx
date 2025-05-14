@@ -22,6 +22,8 @@ function PiDash() {
   const { isPending, isError, data } = useQuery({
     queryKey: ['weatherData'],
     queryFn: () => getData(5),
+    refetchInterval: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
   })
   if (isPending) {
     return <p>Loading data...</p>

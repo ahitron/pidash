@@ -6,6 +6,7 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 const dev = false
 
 export const getData = async (numItems: number): Promise<WeatherData> => {
+  console.log('starting query...')
   if (dev) {
     await sleep(500)
     const data = dummyData as APIData
@@ -18,6 +19,7 @@ export const getData = async (numItems: number): Promise<WeatherData> => {
   const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&appid=${apiKey}`
   const res = await fetch(url)
   const data = await res.json()
+  console.log('done')
   return parseData(data, numItems)
 }
 
@@ -97,10 +99,11 @@ const epochToHour = (epoch: number): string => {
 }
 
 const epochToUpdated = (epoch: number): string => {
-  const date = new Date(epoch * 1000)
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  return `Last updated: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100} ${hours % 12 == 0 ? 12 : hours % 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
+  return `Last updated: ${new Date(epoch * 1000).toLocaleString('en-US', {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  })}`
+  // return `Last updated: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100} ${hours % 12 == 0 ? 12 : hours % 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`
 }
 
 const decToPercent = (dec: number) => `${(100 * dec).toFixed(0)}%`
